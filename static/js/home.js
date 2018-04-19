@@ -9,14 +9,17 @@ is_set['phone_number']=0,
 is_set['gender'] =0 ;
 
 function check_not_empty(field){
+	console.log(1);
 	var field_value =  document.getElementById(field);
+	console.log(field_value.value);
 
 	if (field_value.value.length == 0 || field_value.value == "" ) {
 	document.getElementById(field+'_div').innerText = "* All fields are mandatory *"; // This segment displays the validation rule for all fields
 	return false;
 	}
-
-	if (field_value.value.length != 0) {
+	console.log(field_value.value)
+	if (field_value.value.length != 0 || field_value.value != '') {
+		console.log(2);
 		document.getElementById(field+'_div').innerText = "";
 	}
 	return true;
@@ -93,7 +96,7 @@ return false;
 }
 
 function checkphoneNumber(){
-	if (check_not_empty('gender')){	
+	if (check_not_empty('phone_number')){	
 	var pn_regex=/^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
 	var pn = document.getElementById('phone_number').value;
 
