@@ -10,10 +10,9 @@ is_set['gender'] =0 ;
 
 function check_not_empty(field){
 	var field_value =  document.getElementById(field);
-	console.log(field_value.name)
 
 	if (field_value.value.length == 0 || field_value.value == "" ) {
-		console.log('aie chakke')
+//		console.log('aie chakke')
 	document.getElementById(field+'_div').innerText = "* All fields are mandatory *"; // This segment displays the validation rule for all fields
 	is_set[field_value.name]=0;
 	return false;
@@ -137,12 +136,10 @@ function checkDescription(){
 function formValidation(){
 	console.log(is_set);
 	if(is_set['first_name'] == 1 && is_set['last_name'] == 1 && is_set['gender'] ==1 && is_set['phone_number'] ==1 && is_set['dob'] ==1 && is_set['age'] ==1 ){
-	console.log(1);
 	document.getElementById('button_div').innerText = '';
 	document.getElementById("submit_button").disabled = false;
 	}
 	else{
-		console.log(2);
 	document.getElementById("submit_button").disabled = true;
 	document.getElementById('button_div').innerText = 'You can only submit the form after Filling all the fields with valid data';
 	}
