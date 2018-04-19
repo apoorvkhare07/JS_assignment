@@ -12,7 +12,7 @@ def info_page(request):
 		dob = request.POST['dob']
 		gender = request.POST['gender']
 		phone_number = request.POST['phone_number']
-		text_info = request.POST['text_info']
+		text_info = request.POST['description']
 
 		patient = Patient.objects.create(
 			first_name = first_name,

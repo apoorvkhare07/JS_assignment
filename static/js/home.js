@@ -9,28 +9,30 @@ is_set['phone_number']=0,
 is_set['gender'] =0 ;
 
 function check_not_empty(field){
-	console.log(1);
 	var field_value =  document.getElementById(field);
-	console.log(field_value.value);
+	console.log(field_value.name)
 
 	if (field_value.value.length == 0 || field_value.value == "" ) {
+		console.log('aie chakke')
 	document.getElementById(field+'_div').innerText = "* All fields are mandatory *"; // This segment displays the validation rule for all fields
+	is_set[field_value.name]=0;
 	return false;
 	}
-	console.log(field_value.value)
 	if (field_value.value.length != 0 || field_value.value != '') {
-		console.log(2);
 		document.getElementById(field+'_div').innerText = "";
+		is_set[field_value.name]=1;
 	}
 	return true;
 
 }
 
 function checkGender(){
-	if (check_not_empty('gender')){
+	
 	var field_value =  document.getElementById('gender');
 	if (field_value.value == 'Select') {
 	document.getElementById('gender_div').innerText = "* Please select your gender *"; // This segment displays the validation rule for all fields
+		is_set['gender'] =0;
+		formValidation();
 		return false;
 	}
 	else {
@@ -38,8 +40,9 @@ function checkGender(){
 		is_set['gender'] =1;
 		formValidation();
 	return true;
+	
 	}
-	}
+ formValidation();	
  return false;
 }
 
@@ -54,12 +57,15 @@ function checkNames(field){
 
 	if ( !regex.test(name.value)) {
      document.getElementById(field+'_div').innerText = "Enter a valid "+field_name +'\n'+ 'It should contain only characters and its length should be between 2-30 characters '; 
+         is_set[field] = 0;  
+         formValidation();
          return false;
     }
    is_set[field] = 1;  
    formValidation();
    return true;
 }
+formValidation();
 return false; 
 }
 
@@ -70,12 +76,15 @@ function checkAge(){
 
 	if (!(age_value > 0 && age_value < 200) ){
 	 document.getElementById('age_div').innerText = "Enter a valid age.";
+	 is_set['age']=0;
+	 formValidation();
 	 return false;
 	}	
 	is_set['age'] = 1;
 	formValidation();
 	return true;
 }
+formValidation();
 return false;
 }
 
@@ -86,12 +95,15 @@ function checkDob(){
 
 	if (!date_regex.test(dob)){
 	 document.getElementById('dob_div').innerText = "Enter a valid Date." + '\n' + 'A valid date is of the type YYYY-MM-DD';
+	is_set['dob']=0;
+	formValidation();
 	return false;
 	}
 	is_set['dob']=1;
-	formValidation();
+	formValidation();	
 	return true;
 }
+formValidation();
 return false;
 }
 
@@ -101,19 +113,21 @@ function checkphoneNumber(){
 	var pn = document.getElementById('phone_number').value;
 
 	if (!pn_regex.test(pn)){
+	 is_set['phone_number']=0;	
 	 document.getElementById('phone_number_div').innerText = "Enter a valid phone_number.";
+	 formValidation();
 	 return false;	
 	}
 	is_set['phone_number']=1;
 	formValidation();
 	return true;
 	}
+formValidation();	
 return false;
 }
 
 function checkDescription(){
 	if(check_not_empty('description')){
-		is_set ['description'] =1;
 	}
 	else{
 	 document.getElementById('description_div').innerText = "Please enter patients description. (Recomended)";		
@@ -121,9 +135,16 @@ function checkDescription(){
 }
 
 function formValidation(){
-	if(is_set['first_name'] && is_set['last_name'] && is_set['gender'] && is_set['phone_number'] && is_set['dob'] && is_set['age']){
-		document.getElementById('button_div').innerText = '';
+	console.log(is_set);
+	if(is_set['first_name'] == 1 && is_set['last_name'] == 1 && is_set['gender'] ==1 && is_set['phone_number'] ==1 && is_set['dob'] ==1 && is_set['age'] ==1 ){
+	console.log(1);
+	document.getElementById('button_div').innerText = '';
 	document.getElementById("submit_button").disabled = false;
+	}
+	else{
+		console.log(2);
+	document.getElementById("submit_button").disabled = true;
+	document.getElementById('button_div').innerText = 'You can only submit the form after Filling all the fields with valid data';
 	}
 }
 
