@@ -1,0 +1,74 @@
+{% load static %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Boards</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/  JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container">
+      <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item active">Patient-form</li>
+      </ol>
+      <form method="post" id="form">
+    {% csrf_token %}
+    <div class="form-group" >
+      <label for="id_subject">First Name</label>
+      <input type="text" class="form-control" id="first_name" name="first_name" onblur="checkNames(this.name);" >
+      <span id="first_name_div"></span>
+    </div>
+
+    <div class="form-group" >
+      <label for="id_subject">Last Name</label>
+      <input type="text" class="form-control" id="last_name" name="last_name" onblur="checkNames(this.name);">
+      <span id="last_name_div"></span>
+    </div>
+
+    <div class="form-group"> 
+      <label for="id_subject">Age</label>
+      <input type="text" class="form-control" id="age" name="age" onblur="checkAge(this.name);">
+       <span id="age_div"></span>  
+    </div>
+
+    <div class="form-group" >
+      <label for="id_subject">Date of birth</label>
+      <input type="text" class="form-control" id="dob" name="dob" onblur="checkDob(this.name);" placeholder="YYYY-MM-DD">
+      <span id="dob_div"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="id_subject">Phone Number</label>
+      <input type="text" class="form-control" id="phone_number" name="phone_number" onblur="checkphoneNumber(this.name);">
+      <span id="phone_number_div"></span>
+    </div>
+
+
+  <div class="form-group" >
+    <label for="id_subject">Gender</label>
+    <select class="gender" id="gender" name="gender" onblur="checkGender(this.name);">
+      <option>Select</option>
+      <option>Female</option>
+      <option>Male</option>
+      <option>Other</option>
+    </select>
+    <span id="gender_div"></span>
+  </div>
+
+    <div class="form-group">
+      <label for="id_message">Description</label>
+      <textarea class="form-control" id="description" name="description" rows="5" onblur="checkDescription();" ></textarea>
+       <span id="description_div"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success" onfocus="formValidation();" onmouseover="formValidation();" id = 'submit_button'>Submit</button>
+    <br>
+    <span id ='button_div'></span>
+  </form>
+    </div>
+<script src="{% static 'js/home.js' %}"></script>
+  </body>
+</html>
+
+
+  
