@@ -3,7 +3,6 @@ document.getElementById('button_div').innerText = 'You can only submit the form 
 var is_set = [];
 is_set['first_name'] = 0;
 is_set ['last_name'] = 0;
-is_set ['age']= 0;
 is_set['dob'] = 0,
 is_set['phone_number']=0,
 is_set['gender'] =0 ;
@@ -69,24 +68,6 @@ return false;
 }
 
 
-function checkAge(){
-	if (check_not_empty('age')){
-	var age_value = document.getElementById('age').value;
-
-	if (!(age_value > 0 && age_value < 200) ){
-	 document.getElementById('age_div').innerText = "Enter a valid age.";
-	 is_set['age']=0;
-	 formValidation();
-	 return false;
-	}	
-	is_set['age'] = 1;
-	formValidation();
-	return true;
-}
-formValidation();
-return false;
-}
-
 function checkDob(){
 	if (check_not_empty('dob')){
 	var date_regex=/^\d{4}\-\d{1,2}\-\d{1,2}$/;
@@ -133,14 +114,13 @@ function checkDescription(){
 	}
 }
 
+
 function formValidation(){
-	console.log(is_set);
-	if(is_set['first_name'] == 1 && is_set['last_name'] == 1 && is_set['gender'] ==1 && is_set['phone_number'] ==1 && is_set['dob'] ==1 && is_set['age'] ==1 ){
+	if(is_set['first_name'] == 1 && is_set['last_name'] == 1 && is_set['gender'] ==1 && is_set['phone_number'] ==1 && is_set['dob'] ==1  ){
 	document.getElementById('button_div').innerText = '';
 	document.getElementById("submit_button").disabled = false;
 	}
 	else{
-	document.getElementById("submit_button").disabled = true;
 	document.getElementById('button_div').innerText = 'You can only submit the form after Filling all the fields with valid data';
 	}
 }
