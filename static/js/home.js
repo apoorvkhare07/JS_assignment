@@ -68,24 +68,30 @@ return false;
 }
 
 
-function checkDob(){
+function checkDob() {
 	if (check_not_empty('dob')){
-	var date_regex=/^\d{4}\-\d{1,2}\-\d{1,2}$/;
+	var date_regex=/^\d{4}-\d{1,2}-\d{1,2}$/;
 	var dob = document.getElementById('dob').value;
+	var today = new Date();
 
 	if (!date_regex.test(dob)){
-	 document.getElementById('dob_div').innerText = "Enter a valid Date." + '\n' + 'A valid date is of the type YYYY-MM-DD';
-	is_set['dob']=0;
-	formValidation();
-	return false;
+	 document.getElementById('dob_div').innerText = "Enter a valid Date.";
+	 is_set['dob']=0;
 	}
-	is_set['dob']=1;
-	formValidation();	
-	return true;
-}
+	
+	//console.log(dob);
+	dob = Date.parse(dob);
+	//console.log(dob);
+
+    if (today <= dob) {
+        document.getElementById('dob_div').innerText = "Current or future date is not allowed.";
+        return false;
+    }
+
+	}
 formValidation();
 return false;
-}
+}	
 
 function checkphoneNumber(){
 	if (check_not_empty('phone_number')){	
